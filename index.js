@@ -47,6 +47,7 @@ function App() {
       return false;
     }
     count++;
+    setCount(count);
 
     const index = Math.floor((start + end) / 2);
     const item = array[index];
@@ -59,9 +60,6 @@ function App() {
       return binarySearch(val, array, index + 1, end, count);
     } else if (item > val) {
       return binarySearch(val, array, start, index - 1, count);
-    } else {
-      setCount(count);
-      return false;
     }
   };
 
