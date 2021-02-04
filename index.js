@@ -47,7 +47,7 @@ function App() {
       return false;
     }
     count++;
-    setCount(count);
+    setCount(count); // Where can I set this so it only runs once?
 
     const index = Math.floor((start + end) / 2);
     const item = array[index];
