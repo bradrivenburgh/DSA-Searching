@@ -11,8 +11,8 @@ function App() {
   ]);
   const [valueLin, setValueLin] = React.useState("");
   const [valueBin, setValueBin] = React.useState("");
-  const [count, setCount] = React.useState(0);
   const [found, setFound] = React.useState(false);
+  const [finalCount, setFinalCount] = React.useState(0);
 
   const prepValue = (val) => {
     let prepped = val.trim();
@@ -27,18 +27,18 @@ function App() {
     for (let i = 0; i < array.length; i++) {
       count++;
       if (array[i] == val) {
-        setCount(count);
+        setFinalCount(count);
         setFound(true);
         return true;
       }
     }
-    setCount(count);
+    setFinalCount(count);
     return false;
   };
 
   const binarySearch = (
     val,
-    array = data.sort((a, b) => a - b),
+    array = data.slice().sort((a, b) => a - b),
     start = 0,
     end = data.length,
     count = 0
@@ -46,14 +46,17 @@ function App() {
     if (start > end) {
       return false;
     }
+    
     count++;
-    setCount(count); // Where can I set this so it only runs once?
 
     const index = Math.floor((start + end) / 2);
     const item = array[index];
-
+    if (start === end && item !== val) {
+      setFinalCount(count);
+      return false;
+    }
     if (item === val) {
-      setCount(count);
+      setFinalCount(count);
       setFound(true);
       return true;
     } else if (item < val) {
@@ -72,7 +75,7 @@ function App() {
   const handleSubmitLin = (e) => {
     e.preventDefault();
     setFound(false);
-    setCount(0);
+    setFinalCount(0)
     const val = prepValue(valueLin);
     setValueLin("");
     linearSearch(val);
@@ -81,7 +84,7 @@ function App() {
   const handleSubmitBin = (e) => {
     e.preventDefault();
     setFound(false);
-    setCount(0);
+    setFinalCount(0);
     const val = prepValue(valueBin);
     setValueBin("");
     binarySearch(val);
@@ -122,9 +125,9 @@ function App() {
         </form>
       </section>
       <section>
-        {count > 0 && found && <p>The item was found after {count} tries</p>}
-        {count > 0 && !found && (
-          <p>The item was not found after {count} tries</p>
+        {finalCount > 0 && found && <p>The item was found after {finalCount} tries</p>}
+        {finalCount > 0 && !found && (
+          <p>The item was not found after {finalCount} tries</p>
         )}
       </section>
     </main>

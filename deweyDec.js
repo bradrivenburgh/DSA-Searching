@@ -23,10 +23,53 @@ Each category is then divided into subseries separated by 10.
 Further subdivisions extend to decimal numbers
  */
 
- function deweyDec(bookDD, title) {
+ // category{3}.sub{2}+10 example 00,10,20..
+ // 000, 010, 020, 030
+ // 000 - 099.10,20
+
+ // 000.10 => book_title
+
+ const library = {
+  '000':{
+    'Computer science, information, and general works':{
+      '000':{
+        '01':{
+          dewey_decimal:'000.001',
+          title:'Some book'
+        },
+      },
+      '010':{},
+      '020':{},
+      '030':{},
+      '040':{},
+      '050':{},
+      '060':{},
+      '070':{},
+      '080':{},
+      '090':{},
+    }
+  },
+  '100':{},
+  '200':{},
+  '300':{},
+  '400':{},
+  '500':{},
+  '600':{},
+  '700':{},
+  '800':{},
+  '900':{},
+ };
+
+ /**
+  * Return dewey decimal value of the given title.
+  */
+ function deweyDec(catalog = {}, bookDD = '', title = '') {
   // Divide book dewey decimal number by 10
   // to get the general category
 
   // D
 
  }
+
+ deweyDec(library, '000.001', '');
+ deweyDec(library, '', 'Some Book');
