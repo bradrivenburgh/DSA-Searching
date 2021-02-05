@@ -56,50 +56,6 @@ const library = [
   },
 ]
 
-// const library = [
-//   {
-//     "000": {
-//       "00": {
-//         dewey_decimal: "000.001",
-//         title: "Computer Science Book",
-//       },
-//     },
-//   },
-//   {
-//     100: {
-//       "00": {
-//         dewey_decimal: "100.001",
-//         title: "Psychology Book",
-//       },
-//     },
-//   },
-//   {
-//     200: {
-//       "00": {
-//         dewey_decimal: "200.001",
-//         title: "Religious Book",
-//       },
-//     },
-//   },
-//   {
-//     300: {
-//       "00": {
-//         dewey_decimal: "300.001",
-//         title: "Social Science Book",
-//       },
-//     },
-//   },
-//   {
-//     400: {
-//       "00": {
-//         dewey_decimal: "400.001",
-//         title: "Language Book",
-//       },
-//     },
-//   },
-// ];
-
-
 /**
  * Return dewey decimal value of the given title.
  */
