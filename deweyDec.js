@@ -23,53 +23,94 @@ Each category is then divided into subseries separated by 10.
 Further subdivisions extend to decimal numbers
  */
 
- // category{3}.sub{2}+10 example 00,10,20..
- // 000, 010, 020, 030
- // 000 - 099.10,20
+// category{3}.sub{2}+10 example 00,10,20..
+// 000, 010, 020, 030
+// 000 - 099.10,20
 
- // 000.10 => book_title
+// 000.10 => book_title
 
- const library = {
-  '000':{
-    'Computer science, information, and general works':{
-      '000':{
-        '01':{
-          dewey_decimal:'000.001',
-          title:'Some book'
-        },
-      },
-      '010':{},
-      '020':{},
-      '030':{},
-      '040':{},
-      '050':{},
-      '060':{},
-      '070':{},
-      '080':{},
-      '090':{},
-    }
+const library = {
+  "000": {
+    "00": {
+      dewey_decimal: "000.001",
+      title: "Some book",
+    },
   },
-  '100':{},
-  '200':{},
-  '300':{},
-  '400':{},
-  '500':{},
-  '600':{},
-  '700':{},
-  '800':{},
-  '900':{},
- };
+  "100": {
+    "00": {
+      dewey_decimal: "100.001",
+      title: "Some book",
+    },
+  },
+  "200": {
+    "00": {
+      dewey_decimal: "200.001",
+      title: "Some book",
+    },
+  },
+  "300": {
+    "00": {
+      dewey_decimal: "300.001",
+      title: "Some book",
+    },
+  },
+  "400": {
+    "00": {
+      dewey_decimal: "400.001",
+      title: "Some book",
+    },
+  },
+};
 
- /**
-  * Return dewey decimal value of the given title.
-  */
- function deweyDec(catalog = {}, bookDD = '', title = '') {
-  // Divide book dewey decimal number by 10
-  // to get the general category
+/*
+  const binarySearch = (
+    val,
+    array ,
+    start = 0,
+    end = data.length,
+    count = 0
+  ) => {
+    if (start > end) {
+      return false;
+    }
+    
+    count++;
 
-  // D
+    const index = Math.floor((start + end) / 2);
+    const item = array[index];
+    if (start === end && item !== val) {
+      setFinalCount(count);
+      return false;
+    }
+    if (item === val) {
+      setFinalCount(count);
+      setFound(true);
+      return true;
+    } else if (item < val) {
+      return binarySearch(val, array, index + 1, end, count);
+    } else if (item > val) {
+      return binarySearch(val, array, start, index - 1, count);
+    }
+  };
 
- }
+*/
 
- deweyDec(library, '000.001', '');
- deweyDec(library, '', 'Some Book');
+
+/**
+ * Return dewey decimal value of the given title.
+ */
+function deweyDec(catalog = {}, bookDD = "", title = "") {
+  if (!bookDD) {
+    return false;
+  }
+  let category = bookDD[0]+"00";
+  let subcategory = bookDD[1]+bookDD[2];
+  //let decimal = parseFloat(bookDD);
+
+  if (catalog[category][subcategory].dewey_decimal === bookDD) {
+    return true;
+  }
+}
+
+deweyDec(library, "000.001", "");
+console.log(deweyDec(library, "", "Some Book"));
